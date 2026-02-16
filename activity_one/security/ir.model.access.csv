@@ -6,3 +6,6 @@ access_room,access_room,model_room,activity_one.hr_manager_group,1,1,1,1
 access_teacher,access_teacher,model_teacher,activity_one.hr_manager_group,1,1,1,1
 access_course,access_course,model_course,base.group_user,0,1,0,0
 access_registration,access_registration,model_registration,base.group_user,1,1,1,1
+access_course,access_course,model_course,activity_one.teacher_group,0,1,0,0
+access_registration,access_registration,model_registration,activity_one.teacher_group,0,0,0,0
+access_teacher,access_teacher,model_teacher,activity_one.teacher_group,0,1,0,0

@@ -50,5 +50,6 @@
         name="Make Registration"
         parent="registration_menu"
         action="registration_action"
+        groups="activity_one.hr_manager_group,base.group_user"
     />
 </odoo>
