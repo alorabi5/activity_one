@@ -48,5 +48,6 @@
         name="Location"
         parent="registration_menu"
         action="location_action"
+        groups="activity_one.hr_manager_group"
     />
 </odoo>

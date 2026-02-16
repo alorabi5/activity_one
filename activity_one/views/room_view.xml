@@ -47,5 +47,6 @@
         name="Room"
         parent="registration_menu"
         action="room_action"
+        groups="activity_one.hr_manager_group"
     />
 </odoo>

@@ -55,5 +55,6 @@
         name="Teacher"
         parent="registration_menu"
         action="teacher_action"
+        groups="activity_one.hr_manager_group"
     />
 </odoo>
