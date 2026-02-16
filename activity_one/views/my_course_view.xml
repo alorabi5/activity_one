@@ -1,0 +1,33 @@
+<odoo>
+    <record id="my_course_view_list" model="ir.ui.view">
+        <field name="name">My Course List</field>
+        <field name="model">course</field>
+        <field name="arch" type="xml">
+            <list multi_edit="0" create="0" edit="0" delete="0">
+                <field name="name"></field>
+            </list>
+        </field>
+    </record>
+
+    <record id="my_course_view_search" model="ir.ui.view">
+        <field name="name">My Course Search</field>
+        <field name="model">course</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"></field>
+            </search>
+        </field>
+    </record>
+
+    <record id="my_course_action" model="ir.actions.act_window">
+        <field name="name">My Course</field>
+        <field name="res_model">course</field>
+    </record>
+
+    <menuitem
+        id="my_course_menu_item"
+        name="My Course"
+        parent="course_menu"
+        action="my_course_action"
+    />
+</odoo>

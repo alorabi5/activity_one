@@ -1,0 +1,59 @@
+<odoo>
+    <record id="teacher_view_list" model="ir.ui.view">
+        <field name="name">Teacher List</field>
+        <field name="model">teacher</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="code"></field>
+                <field name="name"></field>
+                <field name="course_ids"></field>
+            </list>
+        </field>
+    </record>
+
+    <record id="teacher_view_search" model="ir.ui.view">
+        <field name="name">Teacher Search</field>
+        <field name="model">teacher</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="course_ids"></field>
+                <field name="code"></field>
+
+                <filter name="group_course" string="by Course" context="{'group_by': 'course_ids'}"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="teacher_view_form" model="ir.ui.view">
+        <field name="name">Teacher Form</field>
+        <field name="model">teacher</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="General Teacher Info.">
+                            <field name="code"></field>
+                            <field name="name"></field>
+                        </group>
+                        <group string="Select Courses">
+                            <field name="course_ids" widget="many2many_tags"></field>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="teacher_action" model="ir.actions.act_window">
+        <field name="name">Teacher</field>
+        <field name="res_model">teacher</field>
+    </record>
+
+    <menuitem
+        id="teacher_menu_item"
+        name="Teacher"
+        parent="registration_menu"
+        action="teacher_action"
+    />
+</odoo>

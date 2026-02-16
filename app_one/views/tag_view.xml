@@ -1,0 +1,24 @@
+<odoo>
+
+    <record id="tag_view_list" model="ir.ui.view">
+        <field name="name">tag list</field>
+        <field name="model">tag</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"></field>
+            </list>
+        </field>
+    </record>
+
+    <record id="tag_action" model="ir.actions.act_window">
+        <field name="name">Tag</field>
+        <field name="res_model">tag</field>
+    </record>
+
+    <menuitem
+    id="tag_menu_item"
+    name="Tags"
+    parent="configration_menu"
+    action="tag_action"
+    />
+</odoo>

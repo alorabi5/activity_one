@@ -1,0 +1,51 @@
+<odoo>
+    <record id="room_view_list" model="ir.ui.view">
+        <field name="name">Room List</field>
+        <field name="model">room</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="code"></field>
+                <field name="name"></field>
+            </list>
+        </field>
+    </record>
+
+    <record id="room_view_search" model="ir.ui.view">
+        <field name="name">Room Search</field>
+        <field name="model">room</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"></field>
+            </search>
+        </field>
+    </record>
+
+    <record id="room_view_form" model="ir.ui.view">
+        <field name="name">Room Form</field>
+        <field name="model">room</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="General Room Info.">
+                            <field name="code"></field>
+                            <field name="name"></field>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="room_action" model="ir.actions.act_window">
+        <field name="name">Room</field>
+        <field name="res_model">room</field>
+    </record>
+
+    <menuitem
+        id="room_menu_item"
+        name="Room"
+        parent="registration_menu"
+        action="room_action"
+    />
+</odoo>

@@ -1,0 +1,54 @@
+<odoo>
+
+    <record id="registration_view_list" model="ir.ui.view">
+        <field name="name">Registration List</field>
+        <field name="model">registration</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="trainee_id"></field>
+                <field name="course_id"></field>
+            </list>
+        </field>
+    </record>
+
+    <record id="registration_view_search" model="ir.ui.view">
+        <field name="name">Registration Search</field>
+        <field name="model">registration</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="trainee_id"></field>
+            </search>
+        </field>
+    </record>
+
+    <record id="registration_view_form" model="ir.ui.view">
+        <field name="name">Registration Form</field>
+        <field name="model">registration</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="General Course Info.">
+                            <field name="trainee_id"></field>
+                            <field name="course_id"></field>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    
+    <record id="registration_action" model="ir.actions.act_window">
+        <field name="name">Make Registration</field>
+        <field name="res_model">registration</field>
+    </record>
+
+
+    <menuitem
+        id="registration_menu_item"
+        name="Make Registration"
+        parent="registration_menu"
+        action="registration_action"
+    />
+</odoo>

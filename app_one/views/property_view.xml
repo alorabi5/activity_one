@@ -1,0 +1,105 @@
+<odoo>
+    <record id="property_view_list" model="ir.ui.view">
+        <field name="name">Property List</field>
+        <field name="model">property</field>
+        <field name="arch" type="xml">
+
+            <!-- list args for CRUD multi_edit="1" create="1" edit="1" delete="1" -->
+            <list>
+                <field name="name"></field>
+                <!-- <field name="description"></field> -->
+                <field name="postcode"></field>
+                <field name="owner_id"></field>
+                <field name="date_availability"></field>
+                <!-- <field name="expected_price"></field> -->
+                <field name="selling_price"></field>
+                <field name="bedrooms" optional="1"></field>
+                <!-- <field name="living_area"></field> -->
+                <field name="facades"></field>
+                <field name="garage" optional="1"></field>
+                <field name="garden"></field>
+                <field name="garden_area"></field>
+                <!-- <field name="garden_orientation"></field> -->
+            </list>
+        </field>
+    </record>
+
+
+    <record id="property_view_search" model="ir.ui.view">
+        <field name="name">Property Search</field>
+        <field name="model">property</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" />
+                <field name="postcode" />
+                
+                <filter name="is_garden" string="With Garden" domain="[('garden', '=', True)]" />
+                <filter name="is_not_garden" string="Without Garden" domain="[('garden', '=', False)]" />
+                <filter name="is_garden" string="With Garden" domain="[('garage', '=', True)]" />
+
+                <filter name="group_garden" string="Garden" context="{'group_by': 'garden'}" />
+            </search>
+        </field>
+    </record>
+
+
+    <record id="property_view_form" model="ir.ui.view">
+        <field name="name">Property Form</field>
+        <field name="model">property</field>
+        <field name="arch" type="xml">
+            
+            <!-- form args for CRUD create="1" edit="1" delete="1" -->
+            <form>
+                <sheet>
+                    <div class="oe_title">
+                        <label for="name"/>
+                        <h1>
+                            <field name="name"></field>
+                        </h1>
+                    </div>
+
+                    <group>     <!-- Parent Group -->
+                        <group string="General Info.">
+                            <field name="date_availability" required="1" />
+                            <field name="postcode"></field>
+                            <field name="expected_price"></field>
+                            <field name="selling_price"></field>
+                            <field name="bedrooms"></field>
+                            <field name="living_area"></field>
+                            <field name="facades"></field>
+                        </group>
+
+                        <group string="Additional Info.">
+                            <field name="owner_id"></field>
+                            <field name="bedrooms"></field>
+                            <field name="garden"></field>
+                            <field name="garden_area"></field>
+                            <field name="garden_orientation"></field>
+                            <field name="garage"></field>
+                            <field name="tag_ids" widget="many2many_tags"></field>
+                        </group>
+
+
+                        <group>
+                            <field name="description" required="1"/>
+
+                        </group>
+                    </group>    <!-- End of Parent Group -->
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="property_action" model="ir.actions.act_window">
+        <field name="name">Property</field>
+        <field name="res_model">property</field>
+    </record>
+
+    <menuitem 
+        id="property_menu_item"
+        name="Properties"
+        parent="properties_menu"
+        action="property_action"
+    />
+</odoo>

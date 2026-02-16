@@ -1,0 +1,87 @@
+<odoo>
+
+    # List
+    <record id="course_view_list" model="ir.ui.view">
+        <field name="name">Course List</field>
+        <field name="model">course</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="serial_number" string="No."></field>
+                <field name="name"></field>
+                <field name="start_date"></field>
+                <field name="number_of_days" string="Duration (by days)"></field>
+                <field name="location_id"></field>
+                <field name="available_seat"></field>
+            </list>
+        </field>
+    </record>
+
+
+    # Search
+    <record id="course_view_search" model="ir.ui.view">
+        <field name="name">Course Search</field>
+        <field name="model">course</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"></field>
+            </search>
+        </field>
+    </record>
+
+
+    # Form
+    <record id="course_view_form" model="ir.ui.view">
+        <field name="name">Course Form</field>
+        <field name="model">course</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group string="General Course Info.">
+                            <field name="serial_number"></field>
+                            <field name="name"></field>
+                            <field name="descrption"></field>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Course Details">
+                            <field name="start_date"></field>
+                            <field name="end_date"></field>
+                            <field name="number_of_days"></field>
+                            <field name="time"></field>
+                            <field name="available_seat"></field>
+                            <field name="targer_gender"></field>
+                            <field name="deadline"></field>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="Course Location">
+                            <field name="teacher_id"></field>
+                            <field name="techer_name"></field>
+                            <field name="room_id"></field>
+                            <field name="location_id"></field>
+                            <field name="registration_id" invisible="1"></field>
+
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    # Action
+    <record id="course_action" model="ir.actions.act_window">
+        <field name="name">All Course</field>
+        <field name="res_model">course</field>
+    </record>
+
+    <menuitem
+        id="course_menu_item"
+        name="All Course"
+        parent="course_menu"
+        action="course_action"
+    />
+</odoo>

@@ -1,0 +1,31 @@
+<odoo>
+    <data>
+        <record id="course_sequence" model="ir.sequence">
+            <field name="name">Course Seq</field>
+            <field name="code">course_seq</field>
+            <field name="prefix"></field> 
+            <field name="padding">1</field>
+        </record>
+
+        <record id="location_sequence" model="ir.sequence">
+            <field name="name">Location Seq</field>
+            <field name="code">location_seq</field>
+            <field name="prefix">L</field> 
+            <field name="padding">5</field>
+        </record>
+
+        <record id="room_sequence" model="ir.sequence">
+            <field name="name">Room Seq</field>
+            <field name="code">room_seq</field>
+            <field name="prefix">R</field>
+            <field name="padding">5</field>
+        </record>
+
+        <record id="teacher_sequence" model="ir.sequence">
+            <field name="name">Teacher Seq</field>
+            <field name="code">teacher_seq</field>
+            <field name="prefix">T</field>
+            <field name="padding">5</field>
+        </record>
+    </data>
+</odoo>

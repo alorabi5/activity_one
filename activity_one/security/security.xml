@@ -1,0 +1,9 @@
+<odoo>
+    <record id="hr_manager_group" model="res.groups">
+        <field name="name">HR Mnager</field>
+    </record>
+
+    <record id="teacher_group" model="res.groups">
+        <field name="name">Teacher Group</field>
+    </record>
+</odoo>
