@@ -3,7 +3,7 @@
         <field name="name">Location List</field>
         <field name="model">location</field>
         <field name="arch" type="xml">
-            <list>
+            <list editable="top">
                 <field name="code"></field>
                 <field name="name"></field>
             </list>
@@ -49,5 +49,5 @@
         parent="registration_menu"
         action="location_action"
         groups="activity_one.hr_manager_group"
-    />
+        />
 </odoo>

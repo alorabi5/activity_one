@@ -4,8 +4,8 @@ access_registration,access_registration,model_registration,activity_one.hr_manag
 access_location,access_location,model_location,activity_one.hr_manager_group,1,1,1,1
 access_room,access_room,model_room,activity_one.hr_manager_group,1,1,1,1
 access_teacher,access_teacher,model_teacher,activity_one.hr_manager_group,1,1,1,1
-access_course,access_course,model_course,activity_one.trainee_group,0,1,0,0
-access_registration,access_registration,model_registration,activity_one.trainee_group,1,1,1,1
+access_course,access_course,model_course,activity_one.activity_one.trainee_group,0,1,0,0
+access_registration,access_registration,model_registration,activity_one.activity_one.trainee_group,1,1,1,1
 access_course,access_course,model_course,activity_one.teacher_group,0,1,0,0
-access_registration,access_registration,model_registration,activity_one.teacher_group,0,1,1,0
+access_registration,access_registration,model_registration,activity_one.teacher_group,0,0,0,0
 access_teacher,access_teacher,model_teacher,activity_one.teacher_group,0,1,0,0

@@ -32,6 +32,12 @@ class Course(models.Model):
                 record.number_of_days = 0
 
 
+    @api.constrains('available_seat')
+    def check_valid_seat_number(self):
+        for rec in self:
+            if rec.available_seat < 0:
+                raise exceptions.ValidationError('Please add valid seats number!')
+
 
     @api.model
     def create(self, vals):

@@ -7,6 +7,7 @@
             <list>
                 <field name="trainee_id"></field>
                 <field name="course_id"></field>
+                <field name="state"></field>
             </list>
         </field>
     </record>
@@ -26,6 +27,18 @@
         <field name="model">registration</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <button name="action_draft" type="object" class="btn-light" string="Draft" invisible="state == 'draft' or state != 'pending'" />
+                    <button name="action_pending" type="object" class="btn-primary" string="Confirm" invisible="state != 'draft' or state == 'pending'"/>
+                    <button name="action_approve" type="object" class="btn-success" string="Approve" 
+                            invisible="state == 'approve'"
+                            groups="activity_one.hr_manager_group,activity_one.teacher_group"/>
+                    <button name="action_reject" type="object" class="btn-danger" string="Reject" 
+                            invisible="state not in ['reject','approve']" 
+                            groups="activity_one.hr_manager_group,activity_one.teacher_group"/>
+
+                    <field name="state" widget="statusbar"></field>
+                </header>
                 <sheet>
                     <group>
                         <group string="General Course Info.">
@@ -50,6 +63,5 @@
         name="Make Registration"
         parent="registration_menu"
         action="registration_action"
-        groups="activity_one.hr_manager_group,base.group_user"
-    />
+        />
 </odoo>
