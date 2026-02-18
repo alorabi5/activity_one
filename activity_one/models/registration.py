@@ -15,6 +15,7 @@ class Registration(models.Model):
     )
 
     trainee_id = fields.Many2one('hr.employee', required=True)
+    trainee_start_date = fields.Date(related='trainee_id.contract_date_start')
     course_id = fields.Many2one('course', ondelete="cascade", domain=[('end_date', '>=', fields.Date.today() )])
     
     
@@ -30,6 +31,17 @@ class Registration(models.Model):
     def action_reject(self):
         self.state = 'reject'
     
+
+    
+    @api.constrains('trainee_id')
+    def is_join_before_six_month(self):
+        for rec in self:
+            # if (fields.Date.today() - rec.trainee_start_date).days < 180:
+            if rec.trainee_start_date:
+                allow_registration_date = rec.trainee_start_date + relativedelta(months=6)
+                if fields.Date.today() < allow_registration_date:
+                    raise exceptions.ValidationError('Enrollment in the course is only permitted after 6 months from the start date!')
+
 
     @api.model
     def create(self, vals):

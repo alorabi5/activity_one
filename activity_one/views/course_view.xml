@@ -59,7 +59,7 @@
                     <group>
                         <group string="Course Location">
                             <field name="teacher_id"></field>
-                            <field name="techer_name"></field>
+                            <!-- <field name="techer_name"></field> -->
                             <field name="room_id"></field>
                             <field name="location_id"></field>
                             <field name="registration_id" invisible="1"></field>

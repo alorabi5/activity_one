@@ -8,7 +8,7 @@ class Course(models.Model):
     name = fields.Char(required=True)
     descrption = fields.Text()
     teacher_id = fields.Many2one('teacher')
-    techer_name = fields.Char(related='teacher_id.name')
+    # techer_name = fields.Char(related='teacher_id.name')
     start_date = fields.Date()
     end_date = fields.Date()
     number_of_days = fields.Integer(compute='_compute_number_of_days')
@@ -20,7 +20,7 @@ class Course(models.Model):
     deadline = fields.Date()
     registration_id = fields.Many2one('registration')
 
-
+    
 
 
     @api.depends('start_date', 'end_date')
