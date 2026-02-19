@@ -11,6 +11,7 @@
                 <field name="start_date"></field>
                 <field name="number_of_days" string="Duration (by days)"></field>
                 <field name="location_id"></field>
+                <field name="teacher_id"></field>
                 <field name="available_seat"></field>
             </list>
         </field>
@@ -83,5 +84,6 @@
         name="All Course"
         parent="course_menu"
         action="course_action"
+        groups="activity_one.hr_manager_group"
     />
 </odoo>

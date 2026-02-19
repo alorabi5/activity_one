@@ -29,5 +29,7 @@
         name="My Course"
         parent="course_menu"
         action="my_course_action"
+        groups="activity_one.teacher_group,activity_one.trainee_group"
+
     />
 </odoo>

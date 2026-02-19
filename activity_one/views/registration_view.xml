@@ -28,14 +28,25 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <button name="action_draft" type="object" class="btn-light" string="Draft" invisible="state == 'draft' or state != 'pending'" />
-                    <button name="action_pending" type="object" class="btn-primary" string="Confirm" invisible="state != 'draft' or state == 'pending'"/>
+                    <button name="action_draft" type="object" class="btn-light" string="Draft" 
+                    invisible="state == 'draft' or state != 'pending'" 
+                    groups="activity_one.hr_manager_group,activity_one.trainee_group"
+                    />
+
+                    <button name="action_pending" type="object" class="btn-primary" string="Confirm" 
+                            invisible="state != 'draft' or state == 'pending'"
+                            groups="activity_one.hr_manager_group,activity_one.trainee_group"
+                    />
+                    
                     <button name="action_approve" type="object" class="btn-success" string="Approve" 
-                            invisible="state == 'approve'"
-                            groups="activity_one.hr_manager_group,activity_one.teacher_group"/>
+                            invisible="state == 'draft' or state == 'approve'"
+                            groups="activity_one.hr_manager_group,activity_one.teacher_group"
+                    />
+                    
                     <button name="action_reject" type="object" class="btn-danger" string="Reject" 
-                            invisible="state not in ['reject','approve']" 
-                            groups="activity_one.hr_manager_group,activity_one.teacher_group"/>
+                            invisible="state == 'draft' or state == 'reject'" 
+                            groups="activity_one.hr_manager_group,activity_one.teacher_group"
+                    />
 
                     <field name="state" widget="statusbar"></field>
                 </header>

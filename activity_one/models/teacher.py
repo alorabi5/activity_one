@@ -4,6 +4,7 @@ class Teacher(models.Model):
     _name = 'teacher'
 
     name = fields.Char()
+    teacher_user_id = fields.Many2one('res.users')
     course_ids = fields.One2many('course', 'teacher_id')
     code = fields.Char(default='T0000', readonly=1)
 

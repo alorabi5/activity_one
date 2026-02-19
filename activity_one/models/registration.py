@@ -14,7 +14,7 @@ class Registration(models.Model):
         ], default='draft'
     )
 
-    trainee_id = fields.Many2one('hr.employee', required=True)
+    trainee_id = fields.Many2one('hr.employee', required=True, default=lambda self: self.env.user.employee_id, readonly=True, store=True)
     trainee_start_date = fields.Date(related='trainee_id.contract_date_start')
     course_id = fields.Many2one('course', ondelete="cascade", domain=[('end_date', '>=', fields.Date.today() )])
     
@@ -52,7 +52,7 @@ class Registration(models.Model):
         if(course.available_seat == 0):
             raise exceptions.ValidationError('The course seats is full.')
 
-        course.available_seat -= 1
+        course.sudo().available_seat -= 1
         
         return res
     
