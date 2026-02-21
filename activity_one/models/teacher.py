@@ -4,7 +4,7 @@ class Teacher(models.Model):
     _name = 'teacher'
 
     name = fields.Char()
-    teacher_user_id = fields.Many2one('res.users')
+    teacher_user_id = fields.Many2one('res.users', domain= lambda self:[('groups_id', 'in', [self.env.ref('activity_one.teacher_group').id])] )
     course_ids = fields.One2many('course', 'teacher_id')
     code = fields.Char(default='T0000', readonly=1)
 
