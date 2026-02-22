@@ -64,14 +64,14 @@
 
     
     <record id="registration_action" model="ir.actions.act_window">
-        <field name="name">Make Registration</field>
+        <field name="name">All Registration</field>
         <field name="res_model">registration</field>
     </record>
 
 
     <menuitem
         id="registration_menu_item"
-        name="Make Registration"
+        name="All Registration"
         parent="registration_menu"
         action="registration_action"
         />

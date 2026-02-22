@@ -6,10 +6,12 @@ class Room(models.Model):
     name = fields.Char()
     code = fields.Char(default='R0000', readonly=1)
 
-    @api.model
-    def create(self, vals):
-        res = super(Room, self).create(vals)
-        if res.code == 'R0000':
-            res.code = self.env['ir.sequence'].next_by_code('room_seq')
+    @api.model_create_multi
+    def create(self, vals_list):
         
-        return res
+        for vals in vals_list:
+            
+            if vals.get('code', 'R0000') == 'R0000':
+                vals['code'] = self.env['ir.sequence'].next_by_code('room_seq')
+        
+        return super(Room, self).create(vals_list)

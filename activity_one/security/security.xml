@@ -20,46 +20,48 @@
 
     <!-- Record Rules -->
 
-    <!-- Teacher -->
-    <record id="rule_teacher_course" model="ir.rule">
-        <field name="name">Teacher Recourd Rule</field>
-        <field name="model_id" ref="activity_one.model_course"/>
-        <field name="domain_force">[('teacher_id.teacher_user_id', '=', user.id)]</field>
-        <field name="groups" eval="[(4, ref('activity_one.teacher_group'))]"/>
-    </record>
-
     <!-- HR -->
     <record id="rule_hr_course" model="ir.rule">
-        <field name="name">HR Recourd Rule</field>
+        <field name="name">HR Course Recourd Rule</field>
         <field name="model_id" ref="activity_one.model_course"/>
         <field name="domain_force">[(1, '=', 1)]</field>
         <field name="groups" eval="[(4, ref('activity_one.hr_manager_group'))]"/>
     </record>
 
-    <!-- Trainee -->
-    <!-- <record id="rule_trainee_course" model="ir.rule">
-        <field name="name">Trainee Recourd Rule</field>
+
+
+    <!-- Teacher -->
+    <record id="rule_teacher_course" model="ir.rule">
+        <field name="name">Teacher Course Recourd Rule</field>
         <field name="model_id" ref="activity_one.model_course"/>
-        <field name="domain_force">[('registration_id', '==', False)]</field>
-        <field name="groups" eval="[(4, ref('activity_one.trainee_group'))]"/>
-    </record> -->
-    <!-- <record id="rule_trainee_registration" model="ir.rule">
-        <field name="name">Trainee Recourd Rule</field>
+        <field name="domain_force">[('teacher_id.teacher_user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('activity_one.teacher_group'))]"/>
+    </record>
+
+    <record id="rule_teacher_registration" model="ir.rule">
+        <field name="name">Teacher Registration Recourd Rule</field>
         <field name="model_id" ref="activity_one.model_registration"/>
-        <field name="perm_create" eval="True"/>
-        <field name="perm_read" eval="True"/>
+        <field name="domain_force">[('course_id.teacher_id.teacher_user_id', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('activity_one.teacher_group'))]"/>
+    </record>
+
+    <record id="rule_teacher_registration" model="ir.rule">
+        <field name="name">Teacher Registration Recourd Rule</field>
+        <field name="model_id" ref="activity_one.model_registration"/>
+        <field name="domain_force">[('state', '!=', 'draft')]</field>
+        <field name="groups" eval="[(4, ref('activity_one.teacher_group'))]"/>
+    </record>
+
+
+
+    <!-- Trainee -->
+
+    <record id="rule_trainee_registration" model="ir.rule">
+        <field name="name">Trainee Registration Recourd Rule</field>
+        <field name="model_id" ref="activity_one.model_registration"/>
         <field name="domain_force">[('trainee_id.user_id', '=', user.id)]</field>
-        <field name="groups" eval="[(4, ref('training2.group_training_requester'))]"/>
-    </record> -->
+        <field name="groups" eval="[(4, ref('activity_one.trainee_group'))]"/>
+    </record>
 
-    <!-- <record id="hr_record_rule" model="ir.rule">
-        <field name="name">HR Recourd Rule</field>
-        <field name="model_id" ref="activity_one.model_course"/>
-        <field name="domain_force">[('create_uid', '=',  user.id)]</field>
-        <field name="perm_create" eval="True"/>
-        <field name="perm_read" eval="True"/>
-        <field name="perm_write" eval="True"/>
-        <field name="perm_unlink" eval="True"/>
-    </record> -->
-
+    
 </odoo>

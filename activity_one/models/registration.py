@@ -26,10 +26,14 @@ class Registration(models.Model):
         self.state = 'pending'
     
     def action_approve(self):
-        self.state = 'approve'
+        # self.state = 'approve'
+        self.sudo().write({'state': 'approve'})
+
     
     def action_reject(self):
-        self.state = 'reject'
+        # self.state = 'reject'
+        self.sudo().write({'state': 'reject'})
+
     
 
     
@@ -43,19 +47,36 @@ class Registration(models.Model):
                     raise exceptions.ValidationError('Enrollment in the course is only permitted after 6 months from the start date!')
 
 
-    @api.model
-    def create(self, vals):
-        res = super(Registration, self).create(vals)
-
-        course = res.course_id
-
-        if(course.available_seat == 0):
-            raise exceptions.ValidationError('The course seats is full.')
-
-        course.sudo().available_seat -= 1
+    def _check_and_update_seats(self, course_id):
+        if not course_id:
+            return
         
-        return res
+        course = self.env['course'].sudo().browse(course_id)
+
+        if(course.available_seat <= 0):
+            raise exceptions.ValidationError('The course seats is full.')
+        
+        course.sudo().write({'available_seat': course.available_seat - 1 })
+
+    # def _is_trainee_take_course_this_year(self, course_id):
+    #     if not course_id:
+    #         return
+        
+    #     course = self.env['course'].sudo().browse(course_id)
+
+    #     if course.
+
+    @api.model_create_multi
+    def create(self, vals_list):
+
+        for vals in vals_list:
+            course_id = vals.get('course_id')
+
+            self._check_and_update_seats(course_id)
+        
+        return super(Registration, self).create(vals_list)
     
+
     def unlink(self):
         for rec in self:
             if rec.course_id:

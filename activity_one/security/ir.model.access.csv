@@ -7,7 +7,6 @@ access_hr_teacher,access_hr_teacher,model_teacher,activity_one.hr_manager_group,
 
 access_teacher_course,access_teacher_course,model_course,activity_one.teacher_group,0,1,0,0
 access_teacher_registration,access_teacher_registration,model_registration,activity_one.teacher_group,0,1,0,0
-access_teacher_teacher,access_teacher_teacher,model_teacher,activity_one.teacher_group,0,1,0,0
 
 access_trainee_course,access_trainee_course,model_course,activity_one.trainee_group,0,1,0,0
 access_trainee_registration,access_trainee_registration,model_registration,activity_one.trainee_group,1,1,1,1

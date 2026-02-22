@@ -6,11 +6,11 @@ class Location(models.Model):
     name = fields.Char()
     code = fields.Char(default='L0000', readonly=1)
 
-    @api.model
-    def create(self, vals):
-        res = super(Location, self).create(vals)
-        if res.code == 'L0000':
-            res.code = self.env['ir.sequence'].next_by_code('location_seq')
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if vals.get('code', 'L0000') == 'L0000':
+                vals['code'] = self.env['ir.sequence'].next_by_code('location_seq')
         
-        return res
+        return super(Location, self).create(vals_list)
         
