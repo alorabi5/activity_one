@@ -32,6 +32,9 @@ class Registration(models.Model):
     def action_reject(self):
         # self.state = 'reject'
         self.sudo().write({'state': 'reject'})
+        self.course_id.sudo().write({
+            'available_seat': self.course_id.available_seat + 1
+        })
 
     
 
@@ -91,7 +94,7 @@ class Registration(models.Model):
 
     def unlink(self):
         for rec in self:
-            if rec.course_id:
-                rec.course_id.available_seat += 1
+            if rec.course_id and rec.state != 'reject':
+                rec.course_id.sudo().available_seat += 1
 
         return super(Registration, self).unlink()
