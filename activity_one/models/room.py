@@ -6,6 +6,7 @@ class Room(models.Model):
     name = fields.Char()
     code = fields.Char(default='R0000', readonly=1)
 
+
     @api.model_create_multi
     def create(self, vals_list):
         

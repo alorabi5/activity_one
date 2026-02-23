@@ -22,7 +22,7 @@
     <record id="my_course_action" model="ir.actions.act_window">
         <field name="name">My Course</field>
         <field name="res_model">course</field>
-        <field name="domain">[('registration_id.trainee_id.user_id', '=', uid)]</field>
+        <field name="domain">['|', ('registration_ids.trainee_id.user_id', '=', uid), ('teacher_id.teacher_user_id', '=', uid)]</field>
     </record>
 
     <menuitem

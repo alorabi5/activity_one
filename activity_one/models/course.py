@@ -18,7 +18,7 @@ class Course(models.Model):
     
     teacher_id = fields.Many2one('teacher')
     # techer_name = fields.Char(related='teacher_id.name')
-    registration_id = fields.One2many('registration', 'course_id')
+    registration_ids = fields.One2many('registration', 'course_id')
     room_id = fields.Many2one('room')
     location_id = fields.Many2one('location')
 

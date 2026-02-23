@@ -28,7 +28,6 @@ class Registration(models.Model):
     def action_approve(self):
         # self.state = 'approve'
         self.sudo().write({'state': 'approve'})
-
     
     def action_reject(self):
         # self.state = 'reject'
@@ -47,6 +46,25 @@ class Registration(models.Model):
                     raise exceptions.ValidationError('Enrollment in the course is only permitted after 6 months from the start date!')
 
 
+
+    @api.constrains('state', 'trainee_id')
+    def _is_trainee_take_course_this_year(self):
+        for rec in self:
+            if rec.state != 'draft':
+                one_year_ago = fields.Date.today() - relativedelta(years=1)
+
+                existing_registration = self.search([
+                    ('trainee_id', '=', rec.trainee_id.id),
+                    ('state', 'in', ['pending', 'approve']),
+                    ('course_id.start_date', '>=', one_year_ago),
+                    ('id', '!=', rec.id)
+                ])
+
+                if existing_registration:
+                    raise exceptions.ValidationError('Limit Reached: Only one course enrollment is allowed per year!')
+
+
+
     def _check_and_update_seats(self, course_id):
         if not course_id:
             return
@@ -58,13 +76,7 @@ class Registration(models.Model):
         
         course.sudo().write({'available_seat': course.available_seat - 1 })
 
-    # def _is_trainee_take_course_this_year(self, course_id):
-    #     if not course_id:
-    #         return
-        
-    #     course = self.env['course'].sudo().browse(course_id)
 
-    #     if course.
 
     @api.model_create_multi
     def create(self, vals_list):
