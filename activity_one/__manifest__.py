@@ -14,7 +14,8 @@
         'views/registration_view.xml',
         'views/location_view.xml',
         'views/room_view.xml',
-        'views/teacher_view.xml'
+        'views/teacher_view.xml',
+        'reports/course_report.xml'
     ],
     'application': True
 }

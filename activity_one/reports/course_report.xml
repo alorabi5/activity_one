@@ -1,0 +1,74 @@
+<odoo>
+    <record id="course_report" model="ir.actions.report">
+        <field name="name">Course Report</field>
+        <field name="model">registration</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="binding_model_id" ref="model_registration"/>
+        <field name="binding_type">report</field>
+        <field name="report_name">activity_one.course_report_template</field>
+    </record>
+
+    <template id="course_report_template" name="course_template">
+        <style>
+            td{
+                padding: 10px;
+            }
+
+        </style>
+
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <t t-foreach="docs" t-as="rec">
+                    
+                    <h2 style="text-align: center;">Internal Training Details</h2>
+                    
+
+                    <div class="row">
+                        <div class="col-6">
+                            <span style="padding-right: 5px;">Trainee Name:</span>
+                            <span><t t-esc="rec.trainee_id.name"/></span>
+                        </div>
+                        <div class="col-6">
+                            <span style="padding-right: 5px;">Job Position:</span>
+                            <span><t t-esc="rec.trainee_id.job_title"/></span>
+                        </div> 
+                    </div>
+
+                    <table style="width: 100%; border: 1px solid #b3adad; border-collapse: collapse; margin-top: 50px;">
+                        <tr>
+                            <th class="table-active">Serial Number</th>
+                            <td colspan="3"><t t-esc="rec.course_id.serial_number"/></td>
+                        </tr>
+                        <tr>
+                            <th>Course Name</th>
+                            <td colspan="3"><t t-esc="rec.course_id.name"/></td>
+
+                        </tr>
+                        <tr>
+                            <th>Course Description</th>
+                            <td colspan="3"><t t-esc="rec.course_id.descrption"/></td>
+                        </tr>
+                        <tr>
+                            <th>Teacher Name</th>
+                            <td><t t-esc="rec.course_id.teacher_id.name"/></td>
+                            <th>Time</th>
+                            <td><t t-esc="rec.course_id.time"/></td>
+                        </tr>
+                        <tr>
+                            <th>Start Date</th>
+                            <td><t t-esc="rec.course_id.start_date"/></td>
+                            <th>End Date</th>
+                            <td><t t-esc="rec.course_id.end_date"/></td>
+                        </tr>
+                        <tr>
+                            <th>Room Numbe</th>
+                            <td><t t-esc="rec.course_id.room_id.name"/></td>
+                            <th>Course Location</th>
+                            <td><t t-esc="rec.course_id.location_id.name"/></td>
+                        </tr>
+                    </table>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>
