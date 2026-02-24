@@ -9,64 +9,78 @@
     </record>
 
     <template id="course_report_template" name="course_template">
-        <style>
-            td{
-                padding: 10px;
-            }
-
-        </style>
 
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
+            
                 <t t-foreach="docs" t-as="rec">
-                    
-                    <h2 style="text-align: center;">Internal Training Details</h2>
-                    
+                    <style>
+                        .info-table{
+                            border: 0px !important;
+                        }
+                        .info-table th, .info-table td {
+                            padding: 12px !important;
+                            vertical-align: middle;
+                        }
+                        .info-table th {
+                            background-color: #f2f2f2 !important;
+                            font-weight: bold;
+                        }
+                    </style>
+                    <header> 
+                        
+                    </header>
 
-                    <div class="row">
-                        <div class="col-6">
-                            <span style="padding-right: 5px;">Trainee Name:</span>
-                            <span><t t-esc="rec.trainee_id.name"/></span>
+                    <body>
+                        <h2 class="text-info text-center">Internal Training Details</h2>
+                        
+
+                        <div class="row">
+                            <div class="col-6">
+                                <span class="fw-bold pe-2">Trainee Name:</span>
+                                <span><t t-esc="rec.trainee_id.name"/></span>
+                            </div>
+                            <div class="col-6">
+                                <span class="fw-bold pe-2">Job Position:</span>
+                                <span><t t-esc="rec.trainee_id.job_title"/></span>
+                            </div> 
                         </div>
-                        <div class="col-6">
-                            <span style="padding-right: 5px;">Job Position:</span>
-                            <span><t t-esc="rec.trainee_id.job_title"/></span>
-                        </div> 
-                    </div>
 
-                    <table style="width: 100%; border: 1px solid #b3adad; border-collapse: collapse; margin-top: 50px;">
-                        <tr>
-                            <th class="table-active">Serial Number</th>
-                            <td colspan="3"><t t-esc="rec.course_id.serial_number"/></td>
-                        </tr>
-                        <tr>
-                            <th>Course Name</th>
-                            <td colspan="3"><t t-esc="rec.course_id.name"/></td>
+                        <table class="table info-table table-bordered mt-5">
+                            <tr>
+                                <th>Serial Number</th>
+                                <td colspan="3"><t t-esc="rec.course_id.serial_number"/></td>
+                            </tr>
+                            <tr>
+                                <th>Course Name</th>
+                                <td colspan="3"><t t-esc="rec.course_id.name"/></td>
 
-                        </tr>
-                        <tr>
-                            <th>Course Description</th>
-                            <td colspan="3"><t t-esc="rec.course_id.descrption"/></td>
-                        </tr>
-                        <tr>
-                            <th>Teacher Name</th>
-                            <td><t t-esc="rec.course_id.teacher_id.name"/></td>
-                            <th>Time</th>
-                            <td><t t-esc="rec.course_id.time"/></td>
-                        </tr>
-                        <tr>
-                            <th>Start Date</th>
-                            <td><t t-esc="rec.course_id.start_date"/></td>
-                            <th>End Date</th>
-                            <td><t t-esc="rec.course_id.end_date"/></td>
-                        </tr>
-                        <tr>
-                            <th>Room Numbe</th>
-                            <td><t t-esc="rec.course_id.room_id.name"/></td>
-                            <th>Course Location</th>
-                            <td><t t-esc="rec.course_id.location_id.name"/></td>
-                        </tr>
-                    </table>
+                            </tr>
+                            <tr>
+                                <th class="table-active">Course Description</th>
+                                <td colspan="3"><t t-esc="rec.course_id.descrption"/></td>
+                            </tr>
+                            <tr>
+                                <th>Teacher Name</th>
+                                <td><t t-esc="rec.course_id.teacher_id.name"/></td>
+                                <th>Time</th>
+                                <td><t t-esc="rec.course_id.time" t-options='{"widget": "datetime", "format": "hh:mm"}'/></td>
+                            </tr>
+                            <tr>
+                                <th>Start Date</th>
+                                <td><t t-esc="rec.course_id.start_date" t-options='{"widget": "date", "format": "dd MMM yyyy"}'/></td>
+                                <th>End Date</th>
+                                <td><t t-esc="rec.course_id.end_date" t-options='{"widget": "date", "format": "dd MMM yyyy"}'/></td>
+                            </tr>
+                            <tr>
+                                <th>Room Numbe</th>
+                                <td><t t-esc="rec.course_id.room_id.name"/></td>
+                                <th>Course Location</th>
+                                <td><t t-esc="rec.course_id.location_id.name"/></td>
+                                
+                            </tr>
+                        </table>
+                    </body>
                 </t>
             </t>
         </t>
