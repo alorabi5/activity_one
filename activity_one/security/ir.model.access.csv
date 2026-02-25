@@ -11,4 +11,5 @@ access_teacher_registration,access_teacher_registration,model_registration,activ
 
 access_trainee_course,access_trainee_course,model_course,activity_one.trainee_group,0,1,0,0
 access_trainee_teacher,access_trainee_teacher,model_teacher,activity_one.trainee_group,0,1,0,0
+
 access_trainee_registration,access_trainee_registration,model_registration,activity_one.trainee_group,1,1,1,1

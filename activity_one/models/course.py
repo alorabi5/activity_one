@@ -41,14 +41,17 @@ class Course(models.Model):
                 raise exceptions.ValidationError('Please add valid seats number!')
 
 
-    @api.model
-    def create(self, vals):
-        res = super(Course, self).create(vals)
+    @api.model_create_multi
+    def create(self, vals_list):
 
-        if res.available_seat <= 0:
-            raise exceptions.ValidationError('Please make sure there are available seats for this course')
+        for vals in vals_list:
+            if vals.get('serial_number', 0) == 0:
+                vals['serial_number'] = self.env['ir.sequence'].next_by_code('course_seq')
 
-        if res.serial_number == 0:
-            res.serial_number = self.env['ir.sequence'].next_by_code('course_seq')
-        
-        return res
+        records = super(Course, self).create(vals_list)
+
+        for rec in records:
+            if rec.available_seat <= 0:
+                raise exceptions.ValidationError('Please make sure there are available seats for this course')
+
+        return records

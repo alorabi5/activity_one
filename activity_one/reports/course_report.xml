@@ -7,16 +7,23 @@
         <field name="binding_type">report</field>
         <field name="report_name">activity_one.course_report_template</field>
     </record>
+    
+    <template id="head_edit_date" inherit_id="web.external_layout_boxed">
+        <xpath expr="//div[@name='company_address']" position="replace">
+            <t t-out="datetime.date.today().strftime('%d %b %Y')"/>
+        </xpath>
+    </template>
 
-    <template id="course_report_template" name="course_template">
+    <template id="course_report_template" inherit_id="web.external_layout" name="course_template">
 
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
             
                 <t t-foreach="docs" t-as="rec">
                     <style>
+                        
                         .info-table{
-                            border: 0px !important;
+                            border: none !important;
                         }
                         .info-table th, .info-table td {
                             padding: 12px !important;
@@ -27,11 +34,8 @@
                             font-weight: bold;
                         }
                     </style>
-                    <header> 
-                        
-                    </header>
 
-                    <body>
+                    <div class="page">
                         <h2 class="text-info text-center">Internal Training Details</h2>
                         
 
@@ -74,13 +78,13 @@
                             </tr>
                             <tr>
                                 <th>Room Numbe</th>
-                                <td><t t-esc="rec.course_id.room_id.name"/></td>
+                                <td><t t-esc="rec.course_id.sudo().room_id.name"/></td>
                                 <th>Course Location</th>
-                                <td><t t-esc="rec.course_id.location_id.name"/></td>
+                                <td><t t-esc="rec.course_id.sudo().location_id.name"/></td>
                                 
                             </tr>
                         </table>
-                    </body>
+                    </div>
                 </t>
             </t>
         </t>
